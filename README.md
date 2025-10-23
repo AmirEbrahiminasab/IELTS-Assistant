@@ -18,12 +18,19 @@ source .venv/bin/activate
 ```
 
 # dependencies
-pip install -r requirements.txt
 
+```
+pip install -r requirements.txt
+```
 
 # configure key
-cp .env.sample .env
 
+```
+cp .env.sample .env
+```
 
 # run the app
+
+```
 python app/ui.py
+```
