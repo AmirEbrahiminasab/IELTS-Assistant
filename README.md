@@ -32,5 +32,5 @@ cp .env.sample .env
 # run the app
 
 ```
-python app/ui.py
+python -m app.ui
 ```

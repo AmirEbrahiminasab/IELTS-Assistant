@@ -3,9 +3,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 ENV_PATH = Path(".env")
-ENV_VAR_NAME = "OPENAI_API_KEY"  # change if your agents expect a different name
+ENV_VAR_NAME = "GOOGLE_API_KEY"
 
-# Load once on import
 load_dotenv(dotenv_path=ENV_PATH, override=False)
 
 
@@ -38,5 +37,5 @@ def set_api_key(value: str, var_name: str = ENV_VAR_NAME) -> None:
     if not found:
         out_lines.append(f"{var_name}={value}")
     ENV_PATH.write_text("\n".join(out_lines) + "\n")
-    # also set in current process so it takes effect immediately
+    
     os.environ[var_name] = value
