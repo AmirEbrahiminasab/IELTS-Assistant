@@ -5,65 +5,80 @@ from core.pipeline import analyze_part1, analyze_part2
 from core.logging_config import configure_logging
 import logging
 
-
 configure_logging()
 logger = logging.getLogger(__name__)
 
 
-
-
 def _check_api_key_or_raise():
-if not get_api_key():
-raise RuntimeError(
-f"No API key found. Go to the Settings tab and set {ENV_VAR_NAME}."
-)
-
-
+    if not get_api_key():
+        raise RuntimeError(
+            f"No API key found. Go to the Settings tab and set {ENV_VAR_NAME}."
+        )
 
 
 def on_save_key(key: str):
-set_api_key(key)
-return gr.update(value="**Saved!** Your API key is now configured.")
-
-
+    set_api_key(key)
+    return gr.update(value="**Saved!** Your API key is now configured.")
 
 
 def on_analyze_part1(image_path, essay):
-_check_api_key_or_raise()
-if not image_path:
-raise ValueError("Please upload the Task 1 image/chart/graph.")
-if not essay or len(essay.strip()) < 30:
-raise ValueError("Please paste your full Task 1 response (at least 30 chars).")
-logger.info("UI: analyze_part1 invoked")
-return analyze_part1(image_path, essay)
-
-
+    _check_api_key_or_raise()
+    if not image_path:
+        raise ValueError("Please upload the Task 1 image/chart/graph.")
+    if not essay or len(essay.strip()) < 30:
+        raise ValueError("Please paste your full Task 1 response (at least 30 chars).")
+    logger.info("UI: analyze_part1 invoked")
+    return analyze_part1(image_path, essay)
 
 
 def on_analyze_part2(question, essay):
-_check_api_key_or_raise()
-if not question or len(question.strip()) < 10:
-raise ValueError("Please paste the Task 2 question.")
-if not essay or len(essay.strip()) < 30:
-raise ValueError("Please paste your full Task 2 essay (at least 30 chars).")
-logger.info("UI: analyze_part2 invoked")
-return analyze_part2(question, essay)
-
-
+    _check_api_key_or_raise()
+    if not question or len(question.strip()) < 10:
+        raise ValueError("Please paste the Task 2 question.")
+    if not essay or len(essay.strip()) < 30:
+        raise ValueError("Please paste your full Task 2 essay (at least 30 chars).")
+    logger.info("UI: analyze_part2 invoked")
+    return analyze_part2(question, essay)
 
 
 with gr.Blocks(title="IELTS Writing Assistant", fill_height=True) as demo:
-gr.Markdown("""
-# IELTS Writing Assistant
-Local-first app using your existing agents. Your key never leaves your machine on local runs.
-""")
+    gr.Markdown("""
+    # IELTS Writing Assistant
+    Local-first app using your existing agents. Your key never leaves your machine on local runs.
+    """)
+
+    with gr.Tab("Task 1"):
+        with gr.Row():
+            image = gr.Image(type="filepath", label="Task 1 Image/Chart/Graph")
+            essay1 = gr.Textbox(label="Your Task 1 Essay", lines=18, placeholder="Paste your full Task 1 response here…")
+        with gr.Row():
+            btn1 = gr.Button("Analyze", variant="primary")
+            clear1 = gr.Button("Clear")
+        out1 = gr.Markdown(label="Feedback", elem_id="out1")
+
+    with gr.Tab("Task 2"):
+        question = gr.Textbox(label="Task 2 Question", lines=4, placeholder="Paste the question here…")
+        essay2 = gr.Textbox(label="Your Task 2 Essay", lines=18, placeholder="Paste your full Task 2 response here…")
+        with gr.Row():
+            btn2 = gr.Button("Analyze", variant="primary")
+            clear2 = gr.Button("Clear")
+        out2 = gr.Markdown(label="Feedback", elem_id="out2")
+
+    with gr.Tab("Settings"):
+        gr.Markdown(f"Set your API key. This will be saved to `.env` as `{ENV_VAR_NAME}`.")
+        key_box = gr.Textbox(label=f"{ENV_VAR_NAME}", type="password", placeholder="sk-… or your provider key")
+        save_btn = gr.Button("Save Key", variant="secondary")
+        status = gr.Markdown("\n")
+
+    # wire up events
+    btn1.click(on_analyze_part1, inputs=[image, essay1], outputs=[out1])
+    clear1.click(lambda: (None, "", ""), inputs=None, outputs=[image, essay1, out1])
+
+    btn2.click(on_analyze_part2, inputs=[question, essay2], outputs=[out2])
+    clear2.click(lambda: ("", ""), inputs=None, outputs=[question, out2])
+
+    save_btn.click(on_save_key, inputs=[key_box], outputs=[status])
 
 
-with gr.Tab("Task 1"):
-with gr.Row():
-image = gr.Image(type="filepath", label="Task 1 Image/Chart/Graph")
-essay1 = gr.Textbox(label="Your Task 1 Essay", lines=18, placeholder="Paste your full Task 1 response here…")
-with gr.Row():
-btn1 = gr.Button("Analyze", variant="primary")
-clear1 = gr.Button("Clear")
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()
