@@ -8,12 +8,14 @@ A local-first UI for your IELTS agents.
 
 
 ## 1) Clone the repo 
-# git clone https://github.com/AmirEbrahiminasab/IELTS-Assistant.git
 
+```
+git clone https://github.com/AmirEbrahiminasab/IELTS-Assistant.git
 
 python -m venv .venv
-source .venv/bin/activate
 
+source .venv/bin/activate
+```
 
 # dependencies
 pip install -r requirements.txt
