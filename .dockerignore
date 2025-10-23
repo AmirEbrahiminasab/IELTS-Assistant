@@ -1,0 +1,10 @@
+IELTS-Assistant/
+pycache/
+*.pyc
+.env
+logs/
+*.spec
+build/
+dist/
+tmp/
+.gitignore

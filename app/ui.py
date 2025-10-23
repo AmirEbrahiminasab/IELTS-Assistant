@@ -71,14 +71,41 @@ with gr.Blocks(title="IELTS Writing Assistant", fill_height=True) as demo:
         status = gr.Markdown("\n")
 
     # wire up events
-    btn1.click(on_analyze_part1, inputs=[image, essay1], outputs=[out1])
     clear1.click(lambda: (None, "", ""), inputs=None, outputs=[image, essay1, out1])
-
-    btn2.click(on_analyze_part2, inputs=[question, essay2], outputs=[out2])
     clear2.click(lambda: ("", ""), inputs=None, outputs=[question, out2])
-
     save_btn.click(on_save_key, inputs=[key_box], outputs=[status])
+
+    btn1.click(
+        fn=lambda: (gr.update(value="⏳ Analyzing Task 1…"), gr.update(interactive=False)),
+        inputs=None,
+        outputs=[out1, btn1],
+        queue=False,
+    ).then(
+        fn=on_analyze_part1,
+        inputs=[image, essay1],
+        outputs=[out1],
+    ).then(
+        fn=lambda: gr.update(interactive=True),
+        inputs=None,
+        outputs=[btn1],
+    )
+
+    btn2.click(
+        fn=lambda: (gr.update(value="⏳ Analyzing Task 2…"), gr.update(interactive=False)),
+        inputs=None,
+        outputs=[out2, btn2],
+        queue=False,
+    ).then(
+        fn=on_analyze_part2,
+        inputs=[question, essay2],
+        outputs=[out2],
+    ).then(
+        fn=lambda: gr.update(interactive=True),
+        inputs=None,
+        outputs=[btn2],
+    )
+
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860)
