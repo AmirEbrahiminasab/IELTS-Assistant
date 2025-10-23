@@ -1,10 +1,14 @@
 from .state import State
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from .model import model
+import logging
 
+logger = logging.getLogger(__name__)
 
 def task_response(state: State):
     print("--Starting Task Response Analysis--")
+    logger.info("Starting Task Response Analysis")
+    
     chat_prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
             """
@@ -85,7 +89,8 @@ def task_response(state: State):
 
 def coherence_and_cohesion(state: State):
     print("--Starting CC Analysis--")
-
+    logger.info("Starting CC Analysis")
+    
     chat_prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
             """
@@ -166,7 +171,8 @@ def coherence_and_cohesion(state: State):
 
 def lexical_resource(state: State):
     print("--Starting Lexical Resource Analysis--")
-
+    logger.info("Starting Lexical Resource Analysis")
+    
     chat_prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
             """
@@ -247,7 +253,8 @@ def lexical_resource(state: State):
 
 def grammatical_range_and_accuracy(state: State):
     print("--Starting Grammar Analysis--")
-
+    logger.info("Starting Grammar Analysis")
+    
     chat_prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
             """
@@ -330,7 +337,8 @@ def grammatical_range_and_accuracy(state: State):
 
 def aggregator(state: State):
     print("--Summarizing--")
-
+    logger.info("Summarizing: starting")
+    
     chat_prompt = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(
             """
@@ -423,5 +431,6 @@ def aggregator(state: State):
         "grammatical_range_and_accuracy_report": state["grammatical_range_and_accuracy"]
     })
 
+    logger.info("Final Report!")
     return {"aggregated_result": response.content}
 
