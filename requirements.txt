@@ -2,3 +2,12 @@ gradio==4.44.0
 python-dotenv==1.0.1
 Pillow==10.4.0
 rich==13.7.1
+
+langchain-community==0.3.30
+langgraph==0.6.7
+ipython==8.37.0
+typing-extensions==4.15.0
+langchain-core==0.3.76
+pydantic==2.11.9
+requests==2.32.5
+langchain-google-genai==2.1.12
