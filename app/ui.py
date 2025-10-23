@@ -40,8 +40,15 @@ def on_analyze_part2(question, essay):
     logger.info("UI: analyze_part2 invoked")
     return analyze_part2(question, essay)
 
+APP_CSS = """
+#out1 h2, #out2 h2 { border-bottom: 1px solid #eaecef; padding-bottom: 2px; }
+#out1 blockquote, #out2 blockquote {
+  border-left: 3px solid #ddd; padding: .5rem 1rem; color: #555; background: #fafafa;
+}
+#out1, #out2 { max-width: 900px; }
+"""
 
-with gr.Blocks(title="IELTS Writing Assistant", fill_height=True) as demo:
+with gr.Blocks(title="IELTS Writing Assistant", fill_height=True, css=APP_CSS) as demo:
     gr.Markdown("""
     # IELTS Writing Assistant
     Local-first app using your existing agents. Your key never leaves your machine on local runs.
@@ -54,7 +61,7 @@ with gr.Blocks(title="IELTS Writing Assistant", fill_height=True) as demo:
         with gr.Row():
             btn1 = gr.Button("Analyze", variant="primary")
             clear1 = gr.Button("Clear")
-        out1 = gr.Markdown(label="Feedback", elem_id="out1")
+        out1 = gr.Markdown(label="Feedback", elem_id="out1", line_breaks=True)
 
     with gr.Tab("Task 2"):
         question = gr.Textbox(label="Task 2 Question", lines=4, placeholder="Paste the question here…")
@@ -62,7 +69,7 @@ with gr.Blocks(title="IELTS Writing Assistant", fill_height=True) as demo:
         with gr.Row():
             btn2 = gr.Button("Analyze", variant="primary")
             clear2 = gr.Button("Clear")
-        out2 = gr.Markdown(label="Feedback", elem_id="out2")
+        out2 = gr.Markdown(label="Feedback", elem_id="out2", line_breaks=True)
 
     with gr.Tab("Settings"):
         gr.Markdown(f"Set your API key. This will be saved to `.env` as `{ENV_VAR_NAME}`.")

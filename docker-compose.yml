@@ -6,3 +6,5 @@ services:
       - .env
     ports:
       - "7860:7860"
+    volumes:
+      - ./logs:/app/logs 
