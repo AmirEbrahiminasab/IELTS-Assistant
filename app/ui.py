@@ -46,13 +46,26 @@ APP_CSS = """
   border-left: 3px solid #ddd; padding: .5rem 1rem; color: #555; background: #fafafa;
 }
 #out1, #out2 { max-width: 900px; }
+
+#mahak-center { display: flex; justify-content: center; }
 """
 
 with gr.Blocks(title="IELTS Writing Assistant", fill_height=True, css=APP_CSS) as demo:
-    gr.Markdown("""
-    # IELTS Writing Assistant
-    Local-first app using your existing agents. Your key never leaves your machine on local runs.
-    """)
+    gr.Markdown("# IELTS Writing Assistant.")
+    gr.Markdown("---") 
+    gr.Markdown(
+            """
+**How to use (and privacy):**  
+Go to the **Settings** tab → paste your **Google API key** from **Google AI Studio** → click **Save Key**.  
+The key is stored **locally** on your machine (in `.env`) and is **not shared** with anyone else (including me).
+
+**Task 1:** upload the image/chart and paste your full response.  
+**Task 2:** paste the question and your full response.  
+
+**About the grade:** expect about **±0.5 band** error. Please treat the **written feedback and tips** as more important than the numeric grade.
+            """,
+            line_breaks=True
+        )
 
     with gr.Tab("Task 1"):
         with gr.Row():
@@ -73,7 +86,7 @@ with gr.Blocks(title="IELTS Writing Assistant", fill_height=True, css=APP_CSS) a
 
     with gr.Tab("Settings"):
         gr.Markdown(f"Set your API key. This will be saved to `.env` as `{ENV_VAR_NAME}`.")
-        key_box = gr.Textbox(label=f"{ENV_VAR_NAME}", type="password", placeholder="sk-… or your provider key")
+        key_box = gr.Textbox(label=f"{ENV_VAR_NAME}", type="password", placeholder="AIza-… (your Google API key)")
         save_btn = gr.Button("Save Key", variant="secondary")
         status = gr.Markdown("\n")
 
@@ -111,6 +124,18 @@ with gr.Blocks(title="IELTS Writing Assistant", fill_height=True, css=APP_CSS) a
         inputs=None,
         outputs=[btn2],
     )
+
+    gr.HTML("""
+<a href="https://mahak-charity.org/online-payment/" target="_blank" rel="noopener noreferrer">
+  <img
+    src="https://mahak-charity.org/wp-content/themes/kalhors-mahak/images/logo.svg"
+    alt="Donate to Mahak Charity"
+    height="40"
+  />
+</a>
+""", elem_id="mahak-center")
+
+
 
 
 
