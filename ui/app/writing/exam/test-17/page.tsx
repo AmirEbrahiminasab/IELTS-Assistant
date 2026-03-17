@@ -2,13 +2,10 @@
  * Writing Exam Test 17 Page
  */
 
-import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import WritingPanel from "@/components/WritingPanel";
 
 export default function WritingExamTest17Page() {
   return (
-    <DashboardLayout pageTitle="Cambridge 17 - Writing Exam">
-      <ComingSoon pageName="Cambridge 17 Writing Exam" />
-    </DashboardLayout>
+    <WritingPanel section="writing" mode="exam" testNumber={17} />
   );
 }

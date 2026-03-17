@@ -2,13 +2,10 @@
  * Writing Training Test 18 Page
  */
 
-import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import WritingPanel from "@/components/WritingPanel";
 
 export default function WritingTrainingTest18Page() {
   return (
-    <DashboardLayout pageTitle="Cambridge 18 - Writing Training">
-      <ComingSoon pageName="Cambridge 18 Writing Training" />
-    </DashboardLayout>
+    <WritingPanel section="writing" mode="training" testNumber={18} />
   );
 }
