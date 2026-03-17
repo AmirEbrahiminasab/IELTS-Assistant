@@ -2,16 +2,16 @@
 
 /**
  * Header Component
- * 
+ *
  * The top navigation bar that appears at the top of the application.
  * It contains the page title and a profile dropdown menu.
- * 
+ *
  * Key Features:
  * - Displays the current page title
  * - Profile icon in the top-right corner
  * - Dropdown menu with: Profile, Stats, Settings
  * - Click outside to close dropdown
- * 
+ *
  * Props:
  * - pageTitle: string - the title of the current page to display
  */
@@ -39,7 +39,7 @@ const menuItems: MenuItem[] = [
 export default function Header({ pageTitle }: HeaderProps) {
   // State to control dropdown visibility
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
+
   // useRef creates a reference to a DOM element
   // We use it to detect clicks outside the dropdown to close it
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ export default function Header({ pageTitle }: HeaderProps) {
     function handleClickOutside(event: MouseEvent) {
       // Check if the click happened outside the dropdown element
       if (
-        dropdownRef.current && 
+        dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
         // Close the dropdown if clicked outside
@@ -79,24 +79,24 @@ export default function Header({ pageTitle }: HeaderProps) {
   return (
     // Header container
     // - Sticky positioning: stays at top when scrolling
-    // - White background with bottom border
+    // - White background with subtle border
     // - Flexbox for layout (title on left, profile on right)
-    <header className="sticky top-0 z-10 flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-10 flex items-center justify-between h-16 px-6 border-b border-[var(--border-subtle)] bg-white/95 backdrop-blur-sm">
       {/* Page Title */}
-      <h2 className="text-lg font-semibold text-gray-800">
+      <h2 className="text-lg font-semibold text-[var(--text-primary)]">
         {pageTitle}
       </h2>
 
       {/* Profile Section */}
       <div className="relative" ref={dropdownRef}>
-        {/* 
+        {/*
           Profile Button
           - Circular button with user icon
           - Clicking toggles the dropdown menu
         */}
         <button
           onClick={toggleDropdown}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--surface-medium)] hover:bg-[var(--light-gray)] transition-all duration-200"
           aria-label="Open profile menu"
           aria-expanded={isDropdownOpen}  // Accessibility: tells screen readers if menu is open
         >
@@ -104,19 +104,19 @@ export default function Header({ pageTitle }: HeaderProps) {
           <span className="text-xl">👤</span>
         </button>
 
-        {/* 
+        {/*
           Dropdown Menu
           - Only rendered when isDropdownOpen is true
           - Absolute positioning: appears below the profile button
-          - White background with shadow and border
+          - White background with subtle border
         */}
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-[var(--border-subtle)] py-2">
             {/* Menu header */}
-            <div className="px-4 py-2 border-b border-gray-100">
-              <p className="text-sm font-semibold text-gray-800">Menu</p>
+            <div className="px-4 py-2 border-b border-[var(--border-subtle)]">
+              <p className="text-sm font-semibold text-[var(--text-primary)]">Menu</p>
             </div>
-            
+
             {/* Menu Items */}
             <nav className="flex flex-col">
               {menuItems.map((item) => (
@@ -128,11 +128,11 @@ export default function Header({ pageTitle }: HeaderProps) {
                     // Layout & Spacing
                     flex items-center gap-3 px-4 py-3
                     // Transition effects
-                    transition-colors duration-200
+                    transition-all duration-200
                     // Hover state
-                    hover:bg-gray-50
+                    hover:bg-[var(--surface-light)] hover:text-[var(--charcoal)]
                     // Text color
-                    text-gray-700
+                    text-[var(--text-secondary)]
                   `}
                 >
                   {/* Menu item icon */}

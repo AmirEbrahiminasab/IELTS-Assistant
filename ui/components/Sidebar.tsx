@@ -2,16 +2,16 @@
 
 /**
  * Sidebar Component
- * 
+ *
  * This is the main navigation sidebar that appears on the left side of the application.
  * It contains navigation links to all major sections of the IELTS Assistant app.
- * 
+ *
  * Key Features:
  * - Collapsible: Can be minimized to show only icons, saving screen space
  * - Navigation links to: Home, Listening, Reading, Writing, Speaking
  * - Smooth transitions when collapsing/expanding
  * - Active state highlighting for current page
- * 
+ *
  * Props:
  * - isCollapsed: boolean - controls whether sidebar is minimized or not
  * - toggleSidebar: function - callback to toggle the collapsed state
@@ -50,33 +50,35 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
     // Main sidebar container
     // - Fixed position on the left side of the screen
     // - Full height (h-screen)
-    // - Width changes based on collapsed state (264px expanded, 80px collapsed)
-    // - Smooth transition animation (transition-all duration-300)
-    // - White background with subtle border
+    // - Width changes based on collapsed state
+    // - Smooth transition animation
+    // - Clean white background with subtle border
     <aside
-      className={`fixed left-0 top-0 h-screen bg-white border-r border-gray-200 
-        transition-all duration-300 ease-in-out
-        ${isCollapsed ? "w-20" : "w-64"}`}
+      className={`fixed left-0 top-0 h-screen border-r transition-all duration-300 ease-in-out
+        ${isCollapsed ? "w-20" : "w-64"}
+        bg-white border-[var(--border-subtle)]`}
     >
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-[var(--border-subtle)]">
         {/* Logo/Title - only shown when sidebar is expanded */}
         {!isCollapsed && (
-          <h1 className="text-xl font-bold text-gray-800">IELTS Assistant</h1>
+          <h1 className="text-xl font-bold text-[var(--text-primary)]">
+            IELTS Assistant
+          </h1>
         )}
-        
+
         {/* Collapse/Expand Toggle Button */}
         <button
           onClick={toggleSidebar}
-          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg hover:bg-[var(--surface-medium)] transition-all duration-200"
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          {/* 
+          {/*
             Display different arrows based on collapsed state:
             - When collapsed: Right arrow (→) to indicate expanding
             - When expanded: Left arrow (←) to indicate collapsing
           */}
-          <span className="text-lg text-gray-600">
+          <span className="text-lg text-[var(--text-secondary)]">
             {isCollapsed ? "→" : "←"}
           </span>
         </button>
@@ -96,15 +98,16 @@ export default function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               className={`
                 flex items-center gap-3 px-3 py-3 rounded-lg
                 transition-all duration-200
-                hover:bg-gray-100
-                ${isActive ? "bg-blue-50 text-blue-600 font-semibold" : "text-gray-700"}
+                ${isActive 
+                  ? "bg-[var(--charcoal)] text-white font-semibold" 
+                  : "text-[var(--text-secondary)] hover:bg-[var(--surface-light)] hover:text-[var(--charcoal)]"}
                 ${isCollapsed ? "justify-center" : ""}
               `}
               title={isCollapsed ? item.name : undefined}
             >
               {/* Icon - always visible */}
               <span className="text-xl">{item.icon}</span>
-              
+
               {/* Navigation item name - hidden when sidebar is collapsed */}
               {!isCollapsed && (
                 <span className="text-sm">{item.name}</span>
