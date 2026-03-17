@@ -1,16 +1,16 @@
 /**
  * Speaking Training Page
  *
- * Placeholder page for Speaking Training mode.
+ * Test selection for Speaking Training mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function SpeakingTrainingPage() {
   return (
     <DashboardLayout pageTitle="Speaking Training">
-      <ComingSoon pageName="Speaking Training" />
+      <TestList section="Speaking" mode="training" />
     </DashboardLayout>
   );
 }

@@ -1,16 +1,16 @@
 /**
  * Writing Training Page
  *
- * Placeholder page for Writing Training mode.
+ * Test selection for Writing Training mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function WritingTrainingPage() {
   return (
     <DashboardLayout pageTitle="Writing Training">
-      <ComingSoon pageName="Writing Training" />
+      <TestList section="Writing" mode="training" />
     </DashboardLayout>
   );
 }

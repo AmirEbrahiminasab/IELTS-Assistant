@@ -1,16 +1,16 @@
 /**
  * Speaking Exam Page
  *
- * Placeholder page for Speaking Exam mode.
+ * Test selection for Speaking Exam mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function SpeakingExamPage() {
   return (
     <DashboardLayout pageTitle="Speaking Exam">
-      <ComingSoon pageName="Speaking Exam" />
+      <TestList section="Speaking" mode="exam" />
     </DashboardLayout>
   );
 }

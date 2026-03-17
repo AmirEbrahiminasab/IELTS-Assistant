@@ -1,16 +1,16 @@
 /**
  * Listening Exam Page
  *
- * Placeholder page for Listening Exam mode.
+ * Test selection for Listening Exam mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function ListeningExamPage() {
   return (
     <DashboardLayout pageTitle="Listening Exam">
-      <ComingSoon pageName="Listening Exam" />
+      <TestList section="Listening" mode="exam" />
     </DashboardLayout>
   );
 }

@@ -1,16 +1,16 @@
 /**
  * Listening Training Page
  *
- * Placeholder page for Listening Training mode.
+ * Test selection for Listening Training mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function ListeningTrainingPage() {
   return (
     <DashboardLayout pageTitle="Listening Training">
-      <ComingSoon pageName="Listening Training" />
+      <TestList section="Listening" mode="training" />
     </DashboardLayout>
   );
 }
