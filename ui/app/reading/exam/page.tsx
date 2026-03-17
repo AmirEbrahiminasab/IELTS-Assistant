@@ -1,16 +1,16 @@
 /**
  * Reading Exam Page
  *
- * Placeholder page for Reading Exam mode.
+ * Test selection for Reading Exam mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function ReadingExamPage() {
   return (
     <DashboardLayout pageTitle="Reading Exam">
-      <ComingSoon pageName="Reading Exam" />
+      <TestList section="Reading" mode="exam" />
     </DashboardLayout>
   );
 }

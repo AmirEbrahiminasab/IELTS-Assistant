@@ -1,16 +1,16 @@
 /**
  * Reading Training Page
  *
- * Placeholder page for Reading Training mode.
+ * Test selection for Reading Training mode.
  */
 
 import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
+import TestList from "@/components/TestList";
 
 export default function ReadingTrainingPage() {
   return (
     <DashboardLayout pageTitle="Reading Training">
-      <ComingSoon pageName="Reading Training" />
+      <TestList section="Reading" mode="training" />
     </DashboardLayout>
   );
 }
