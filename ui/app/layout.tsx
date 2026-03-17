@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SidebarStateProvider } from "@/components/SidebarStateContext";
 
 const freeSans = localFont({
   src: "../public/fonts/FreeSans.otf",
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${freeSans.variable} ${freeSansBold.variable} antialiased`}
       >
-        {children}
+        <SidebarStateProvider>
+          {children}
+        </SidebarStateProvider>
       </body>
     </html>
   );
