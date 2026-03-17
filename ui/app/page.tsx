@@ -1,9 +1,9 @@
 /**
  * Home Page
- * 
+ *
  * The main landing page of the IELTS Assistant application.
  * This is the first page users see when they open the app.
- * 
+ *
  * Features:
  * - Uses DashboardLayout for consistent navigation
  * - Welcome message and overview
@@ -50,10 +50,10 @@ export default function Home() {
       <div className="max-w-4xl">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
             Welcome to IELTS Assistant! 👋
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-[var(--text-secondary)] text-lg">
             Your comprehensive platform for IELTS preparation.
           </p>
         </div>
@@ -66,27 +66,28 @@ export default function Home() {
               key={section.path}
               href={section.path}
               className={`
-                // Card styling
-                block p-6 bg-white rounded-xl border border-gray-200
+                // Card styling - Clean white surface with subtle border
+                block p-6 rounded-xl border
+                bg-white border-[var(--border-subtle)]
                 // Hover effects
-                hover:shadow-lg hover:border-blue-300
+                hover:shadow-lg hover:border-[var(--slate-gray)]
                 // Smooth transitions
                 transition-all duration-200
               `}
             >
               {/* Card content */}
               <div className="flex items-start gap-4">
-                {/* Icon with background */}
-                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-blue-50 rounded-lg">
+                {/* Icon with background - Minimalist gray */}
+                <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[var(--surface-medium)] rounded-lg">
                   <span className="text-2xl">{section.icon}</span>
                 </div>
-                
+
                 {/* Text content */}
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">
+                  <h3 className="font-semibold text-[var(--text-primary)] mb-1">
                     {section.name}
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[var(--text-muted)]">
                     {section.description}
                   </p>
                 </div>
@@ -96,11 +97,11 @@ export default function Home() {
         </div>
 
         {/* Additional Info Section */}
-        <div className="mt-8 p-6 bg-blue-50 rounded-xl border border-blue-100">
-          <h2 className="font-semibold text-blue-900 mb-2">
+        <div className="mt-8 p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-light)]">
+          <h2 className="font-semibold text-[var(--text-primary)] mb-2">
             📌 Getting Started
           </h2>
-          <p className="text-blue-700 text-sm">
+          <p className="text-[var(--text-secondary)] text-sm">
             Select any section from the sidebar or cards above to start practicing.
             Track your progress in the Stats page and customize your experience
             in Settings.

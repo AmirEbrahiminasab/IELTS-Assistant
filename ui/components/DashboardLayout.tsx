@@ -2,25 +2,21 @@
 
 /**
  * DashboardLayout Component
- * 
+ *
  * A reusable layout wrapper that provides the consistent structure for all pages.
  * It includes the collapsible sidebar and the header with profile dropdown.
- * 
+ *
  * Key Features:
  * - Manages sidebar collapsed/expanded state
  * - Provides consistent layout across all pages
  * - Responsive: content area adjusts based on sidebar state
- * 
- * How it works:
- * - Uses React's useState to track sidebar collapse state
- * - Passes toggle function to Sidebar component
- * - Main content area has dynamic left margin based on sidebar width
- * 
+ * - Persists sidebar state in localStorage
+ *
  * Usage:
  * Wrap any page content with <DashboardLayout pageTitle="Page Name">
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
@@ -31,18 +27,28 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
   // State to track whether sidebar is collapsed
-  // useState(false) means sidebar starts in expanded state
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  // Initialize from localStorage if available, otherwise default to false (expanded)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("sidebarCollapsed");
+      return saved ? JSON.parse(saved) : false;
+    }
+    return false;
+  });
+
+  // Persist sidebar state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(isSidebarCollapsed));
+  }, [isSidebarCollapsed]);
 
   // Function to toggle sidebar state
   const toggleSidebar = () => {
-    // setIsSidebarCollapsed receives the previous state and updates to opposite value
     setIsSidebarCollapsed((prev) => !prev);
   };
 
   return (
     // Main container: full viewport height, flexbox for layout
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[var(--bg-primary)]">
       {/* 
         Sidebar Component
         - Passes collapsed state and toggle function

@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
+/* Modern Minimalist Theme - Clean and contemporary grayscale */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary palette */
+  --charcoal: #36454f;
+  --slate-gray: #708090;
+  --light-gray: #d3d3d3;
+  --white: #ffffff;
+  
+  /* Background */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  
+  /* Surface colors */
+  --surface-light: #fafafa;
+  --surface-medium: #f0f0f0;
+  
+  /* Text colors */
+  --text-primary: #36454f;
+  --text-secondary: #5a6b7c;
+  --text-muted: #8899a6;
+  
+  /* Borders */
+  --border-subtle: #e0e0e0;
+  --border-strong: #c0c0c0;
+  
+  /* Accent */
+  --accent: #708090;
+  --accent-hover: #36454f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-charcoal: var(--charcoal);
+  --color-slate-gray: var(--slate-gray);
+  --color-light-gray: var(--light-gray);
+  --color-white: var(--white);
+  --color-surface-light: var(--surface-light);
+  --color-surface-medium: var(--surface-medium);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-free-sans);
+  --font-free-sans: "FreeSans", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "FreeSans", sans-serif;
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-medium);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--slate-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--charcoal);
+}
+
+/* Selection color */
+::selection {
+  background: var(--light-gray);
+  color: var(--charcoal);
 }
