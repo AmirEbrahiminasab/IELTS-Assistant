@@ -1,14 +1,4 @@
-/**
- * Speaking Training Test 18 Page
- */
-
-import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
-
-export default function SpeakingTrainingTest18Page() {
-  return (
-    <DashboardLayout pageTitle="Cambridge 18 - Speaking Training">
-      <ComingSoon pageName="Cambridge 18 Speaking Training" />
-    </DashboardLayout>
-  );
+import TestSelectionPage from "@/components/TestSelectionPage";
+export default function Page() {
+  return <TestSelectionPage section="speaking" mode="training" testNumber={18} icon="🎤" />;
 }

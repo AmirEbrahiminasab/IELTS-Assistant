@@ -1,6 +1,5 @@
 /**
  * Listening Training Page
- *
  * Test selection for Listening Training mode.
  */
 

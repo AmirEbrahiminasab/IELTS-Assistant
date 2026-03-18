@@ -1,6 +1,5 @@
 /**
  * Writing Training Page
- *
  * Test selection for Writing Training mode.
  */
 

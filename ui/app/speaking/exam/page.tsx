@@ -1,6 +1,5 @@
 /**
  * Speaking Exam Page
- *
  * Test selection for Speaking Exam mode.
  */
 
