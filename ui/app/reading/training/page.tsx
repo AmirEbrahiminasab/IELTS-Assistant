@@ -1,6 +1,5 @@
 /**
  * Reading Training Page
- *
  * Test selection for Reading Training mode.
  */
 

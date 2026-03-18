@@ -1,6 +1,5 @@
 /**
  * Listening Exam Page
- *
  * Test selection for Listening Exam mode.
  */
 

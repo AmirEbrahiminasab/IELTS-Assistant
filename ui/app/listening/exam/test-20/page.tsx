@@ -1,14 +1,4 @@
-/**
- * Listening Exam Test 20 Page
- */
-
-import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
-
-export default function ListeningExamTest20Page() {
-  return (
-    <DashboardLayout pageTitle="Cambridge 20 - Listening Exam">
-      <ComingSoon pageName="Cambridge 20 Listening Exam" />
-    </DashboardLayout>
-  );
+import TestSelectionPage from "@/components/TestSelectionPage";
+export default function Page() {
+  return <TestSelectionPage section="listening" mode="exam" testNumber={20} icon="🎧" />;
 }

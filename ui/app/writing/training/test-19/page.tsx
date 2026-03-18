@@ -1,11 +1,4 @@
-/**
- * Writing Training Test 19 Page
- */
-
-import WritingPanel from "@/components/WritingPanel";
-
-export default function WritingTrainingTest19Page() {
-  return (
-    <WritingPanel section="writing" mode="training" testNumber={19} />
-  );
+import TestSelectionPage from "@/components/TestSelectionPage";
+export default function Page() {
+  return <TestSelectionPage section="writing" mode="training" testNumber={19} />;
 }

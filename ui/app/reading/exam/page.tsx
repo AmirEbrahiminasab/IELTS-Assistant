@@ -1,6 +1,5 @@
 /**
  * Reading Exam Page
- *
  * Test selection for Reading Exam mode.
  */
 

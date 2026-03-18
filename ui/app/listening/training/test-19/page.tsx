@@ -1,14 +1,4 @@
-/**
- * Listening Training Test 19 Page
- */
-
-import DashboardLayout from "@/components/DashboardLayout";
-import ComingSoon from "@/components/ComingSoon";
-
-export default function ListeningTrainingTest19Page() {
-  return (
-    <DashboardLayout pageTitle="Cambridge 19 - Listening Training">
-      <ComingSoon pageName="Cambridge 19 Listening Training" />
-    </DashboardLayout>
-  );
+import TestSelectionPage from "@/components/TestSelectionPage";
+export default function Page() {
+  return <TestSelectionPage section="listening" mode="training" testNumber={19} icon="🎧" />;
 }

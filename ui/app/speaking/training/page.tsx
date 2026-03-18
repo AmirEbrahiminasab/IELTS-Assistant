@@ -1,6 +1,5 @@
 /**
  * Speaking Training Page
- *
  * Test selection for Speaking Training mode.
  */
 

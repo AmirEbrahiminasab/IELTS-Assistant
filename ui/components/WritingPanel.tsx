@@ -22,6 +22,7 @@ interface WritingPanelProps {
   section: "writing";
   mode: "training" | "exam";
   testNumber: number;
+  examNumber?: number;
 }
 
 // Task descriptions for each part
@@ -42,7 +43,7 @@ const taskDescriptions = {
   },
 };
 
-export default function WritingPanel({ section, mode, testNumber }: WritingPanelProps) {
+export default function WritingPanel({ section, mode, testNumber, examNumber }: WritingPanelProps) {
   const router = useRouter();
   
   // Current part state (1 or 2)
@@ -111,7 +112,7 @@ export default function WritingPanel({ section, mode, testNumber }: WritingPanel
       <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-subtle)] bg-white">
         <div>
           <h1 className="text-xl font-bold text-[var(--text-primary)]">
-            IELTS Cambridge {testNumber} - {section.charAt(0).toUpperCase() + section.slice(1)} {mode === "training" ? "Training" : "Exam"}
+            IELTS Cambridge {testNumber} {examNumber ? `- Exam ${examNumber}` : ''} - {section.charAt(0).toUpperCase() + section.slice(1)} {mode === "training" ? "Training" : "Exam"}
           </h1>
           <p className="text-sm text-[var(--text-secondary)]">
             Part {currentPart} of 2

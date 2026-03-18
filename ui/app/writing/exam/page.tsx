@@ -1,6 +1,5 @@
 /**
  * Writing Exam Page
- *
  * Test selection for Writing Exam mode.
  */
 
