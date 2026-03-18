@@ -45,20 +45,56 @@ const taskDescriptions = {
 
 export default function WritingPanel({ section, mode, testNumber, examNumber }: WritingPanelProps) {
   const router = useRouter();
-  
+
   // Current part state (1 or 2)
   const [currentPart, setCurrentPart] = useState<1 | 2>(1);
-  
+
   // Writing content for each part
   const [part1Content, setPart1Content] = useState("");
   const [part2Content, setPart2Content] = useState("");
-  
+
   // Word counts
   const [part1WordCount, setPart1WordCount] = useState(0);
   const [part2WordCount, setPart2WordCount] = useState(0);
-  
+
+  // Timer state
+  const [elapsedTime, setElapsedTime] = useState(0); // seconds (for training mode)
+  const [remainingTime, setRemainingTime] = useState(60 * 60); // 60 minutes in seconds (for exam mode)
+
   // Textarea refs for focus management
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (mode === "training") {
+        // Count up timer for training mode
+        setElapsedTime((prev) => prev + 1);
+      } else {
+        // Count down timer for exam mode
+        setRemainingTime((prev) => {
+          if (prev <= 0) {
+            // Time's up!
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [mode]);
+
+  // Format time helper
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  // Check if timer should be red (less than 2 minutes remaining in exam mode)
+  const isTimeLow = remainingTime < 2 * 60;
   
   // Update word count when content changes
   useEffect(() => {
@@ -119,10 +155,21 @@ export default function WritingPanel({ section, mode, testNumber, examNumber }: 
           </p>
         </div>
         <div className="flex items-center gap-4">
-          {/* Timer placeholder */}
-          <div className="px-4 py-2 bg-[var(--surface-medium)] rounded-lg">
-            <span className="text-[var(--text-primary)] font-mono">
-              {currentPart === 1 ? "20:00" : "40:00"}
+          {/* Timer display */}
+          <div className={`px-4 py-2 rounded-lg ${
+            mode === "exam" && isTimeLow 
+              ? "bg-red-100 border-2 border-red-500" 
+              : "bg-[var(--surface-medium)]"
+          }`}>
+            <span className={`font-mono font-semibold ${
+              mode === "exam" && isTimeLow 
+                ? "text-red-600" 
+                : "text-[var(--text-primary)]"
+            }`}>
+              {mode === "training" 
+                ? formatTime(elapsedTime)  // Count up for training
+                : formatTime(remainingTime) // Count down for exam
+              }
             </span>
           </div>
         </div>
