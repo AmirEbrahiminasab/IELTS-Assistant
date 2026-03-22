@@ -9,3 +9,5 @@ dist/
 tmp/
 ui/*_skill.md
 ui/*.pdf
+
+/app/generated/prisma
